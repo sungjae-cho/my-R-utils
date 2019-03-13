@@ -24,6 +24,6 @@ one.way <- oneway(y = group_df$mean_anwer_steps, x = group_df$carries, posthoc =
 one.way
 
 # (4) Post-hoc: duncan test
-#install.packages("agricolae")
-#library(agricolae) 
-#duncan.test(aov_model, "carries", alpha = 0.05, console = TRUE)
+install.packages("agricolae")
+library(agricolae) 
+duncan.test(aov_model, "carries", alpha = 0.05, console = TRUE)
