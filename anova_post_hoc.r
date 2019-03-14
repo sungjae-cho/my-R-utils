@@ -1,8 +1,11 @@
 install.packages("userfriendlyscience")
 install.packages("car")
+install.packages("RVAideMemoire")
 
 library(userfriendlyscience) # oneway
 library(car) # leveneTest
+library(RVAideMemoire) # byf.shapiro
+
 
 group_df <- read.csv("df_add_jordan_9_maxstep30.csv")
 #group_df <- read.csv("df_sub_jordan_9_maxstep30.csv")
@@ -13,7 +16,18 @@ sapply(group_df, class)
 group_df <- transform(group_df, carries = factor(carries)) 
 sapply(group_df, class)
 
-# (0) Levene's test to check the homogeneity of variances
+
+# ANOVA condition 1: Check normality
+# Shapiro-Wilk test to check normality.
+byf.shapiro(mean_anwer_steps ~ carries, data = group_df)
+# See the histogram of a particular number of carries.
+# hist(group_df[which(group_df$carries==1),]$mean_anwer_steps)
+
+# ANOVA condition 2: Independency
+# Independency is guaranteed.
+
+# ANOVA condition 3: Homogeneity of variances
+# Levene's test to check the homogeneity of variances
 leven.test.result <- leveneTest(mean_anwer_steps ~ carries, data = group_df)
 print(leven.test.result)
 
