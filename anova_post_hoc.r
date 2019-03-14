@@ -1,15 +1,36 @@
 install.packages("userfriendlyscience")
 install.packages("car")
 install.packages("RVAideMemoire")
+install.packages("gplots")
 
 library(userfriendlyscience) # oneway
 library(car) # leveneTest
 library(RVAideMemoire) # byf.shapiro
+library(gplots) # plotmeans
+
+file.name <- "df_add_jordan_9_maxstep30.csv"
+file.name <- "df_add_jordan_9_relu_maxstep30.csv"
+#file.name <- "df_sub_jordan_9_relu_maxstep30.csv"
+#file.name <- "df_add_jordan_9_relu_maxstep40.csv"
+#file.name <- "df_sub_jordan_9_relu_maxstep40.csv"
+#file.name <- "df_add_jordan_9_relu_maxstep50.csv"
+#file.name <- "df_sub_jordan_9_relu_maxstep50.csv"
+#file.name <- "df_add_jordan_9_relu_maxstep60.csv"
+#file.name <- "df_sub_jordan_9_relu_maxstep60.csv"
+
+#file.name <- "df_add_jordan_9_tanh_maxstep30.csv"
+#file.name <- "df_sub_jordan_9_tanh_maxstep30.csv"
+#file.name <- "df_add_jordan_9_tanh_maxstep40.csv"
+#file.name <- "df_sub_jordan_9_tanh_maxstep40.csv"
+#file.name <- "df_add_jordan_9_tanh_maxstep50.csv"
+#file.name <- "df_sub_jordan_9_tanh_maxstep50.csv"
+#file.name <- "df_add_jordan_9_tanh_maxstep60.csv"
+#file.name <- "df_sub_jordan_9_tanh_maxstep60.csv"
 
 
-group_df <- read.csv("df_add_jordan_9_maxstep30.csv")
-#group_df <- read.csv("df_sub_jordan_9_maxstep30.csv")
-
+df1 <- read.csv("df_add_jordan_9_maxstep30.csv")
+df2 <- read.csv("df_add_jordan_9_relu_maxstep30.csv")
+group_df <- read.csv(file.name)
 sapply(group_df, class) 
 
 # transform from 'integer' to 'factor'
@@ -60,3 +81,6 @@ print(one.way)
 #install.packages("agricolae")
 #library(agricolae) 
 #duncan.test(aov_model, "carries", alpha = 0.05, console = TRUE)
+
+
+plotmeans(mean_anwer_steps ~ carries, data = group_df, frame = TRUE)
