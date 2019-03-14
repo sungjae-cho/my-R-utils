@@ -13,7 +13,7 @@ sapply(group_df, class)
 group_df <- transform(group_df, carries = factor(carries)) 
 sapply(group_df, class)
 
-# (0) Levene's test with one independent variable
+# (0) Levene's test to check the homogeneity of variances
 leven.test.result <- leveneTest(mean_anwer_steps ~ carries, data = group_df)
 print(leven.test.result)
 
